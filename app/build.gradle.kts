@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id("maven-publish")
 }
+
 
 android {
     namespace = "com.lakshan.blinklabs.graphqlconnectorlibrary"
@@ -10,8 +12,6 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 34
-
-
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +32,23 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            afterEvaluate { // Ensures components are evaluated after the project is configured
+                from(components["release"]) // Use 'release' for Android libraries
+            }
+            groupId = "com.github.LakshanOnGIT" // Replace with your GitHub username
+            artifactId = "graphqlconnector"   // Replace with your artifact name
+            version = "1.0.0"                 // Replace with your version
+        }
+    }
+}
+
+
 
 dependencies {
 
