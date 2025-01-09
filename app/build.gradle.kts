@@ -12,7 +12,6 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 34
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,7 +31,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
 }
 
 publishing {
@@ -48,19 +46,16 @@ publishing {
     }
 }
 
-
-
 dependencies {
-
-
-    implementation ("com.apollographql.apollo3:apollo-runtime:3.7.2")
-    implementation ("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.7.2")
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation (libs.apollo.runtime)
+    implementation (libs.apollo.normalized.cache.sqlite)
+    implementation (libs.logging.interceptor)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
-    testImplementation("com.apollographql.apollo3:apollo-testing-support:3.7.2")
+    testImplementation(libs.apollo.testing)
+    androidTestImplementation (libs.mockwebserver3)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
